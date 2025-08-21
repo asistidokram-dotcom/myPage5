@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+  <meta charset="UTF-8">
+  <title>Sa Pagitan Kita Natagpuan</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: "Courier New", monospace;
+      background: url("https://raw.githubusercontent.com/asistidokram-dotcom/myPage5/main/affa73c6-c46e-42a0-9221-5728fe104f7c.jpeg") no-repeat center center fixed;
+      background-size: cover;
+      backdrop-filter: blur(4px);
+      color: white;
+      overflow: hidden;
+    }
+
+    .container {
+      max-width: 800px;
+      height: 90vh;
+      margin: 40px auto;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+      overflow-y: auto;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2em;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    #typing {
+      font-size: 1em;
+      border-right: 2px solid white;
+      animation: blink 0.7s infinite;
+      white-space: pre-wrap;
+      overflow-wrap: break-word;
+    }
+
+    @keyframes blink {
+      0%, 100% { border-color: white; }
+      50% { border-color: transparent; }
+    }
+
+    .music-btn {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border: 1px solid white;
+      color: white;
+      font-size: 1em;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .music-btn:hover {
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+
+    audio {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- 🎵 Background Music -->
+  <audio id="bgMusic" loop>
+    <source src="https://raw.githubusercontent.com/asistidokram-dotcom/myPage5/main/coldplay.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <div class="container" id="scrollContainer">
+    <h1>Sa Pagitan Kita Natagpuan</h1>
+    <button class="music-btn" onclick="toggleMusic()">▶️ Play / Pause Music</button>
+    <div id="typing"></div>
+  </div>
+
+  <script>
+    const text = `Isang Tula ng Alaala at Paalam
+
+Sa pagitan kita natagpuan. Sa pagitan ng “mahal kita” at “hindi ko na kaya.” Sa pagitan ng pangarap at realidad. Sa pagitan ng ako— at ng mundo mo na hindi ko kayang sabayan.
+
+... [You can paste the full poem here again if needed] ...
+
+Mahal ko… Paalam. Patawad. Salamat.`;
+
+    let i = 0;
+    const speed = 50;
+
+    function typeWriter() {
+      if (i < text.length) {
+        document.getElementById("typing").textContent += text.charAt(i);
+        i++;
+        document.getElementById("scrollContainer").scrollTop = document.getElementById("scrollContainer").scrollHeight;
+        setTimeout(typeWriter, speed);
+      }
+    }
+
+    function toggleMusic() {
+      const music = document.getElementById("bgMusic");
+      if (music.paused) {
+        music.play();
+      } else {
+        music.pause();
+      }
+    }
+
+    window.onload = typeWriter;
+  </script>
+</body>
+</html>
